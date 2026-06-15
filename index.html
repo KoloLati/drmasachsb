@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dr. Masachs Boungou — Media Civic Innovator · Scholar-Entrepreneur</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ivory: #f5f0e8; --warm-white: #faf8f3; --ink: #1a1510;
+      --gold: #b8922a; --gold-light: #d4a843; --mid: #6b5f50; --light-border: #ddd5c0;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; background: var(--warm-white); color: var(--ink); overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 4rem; background: rgba(250,248,243,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--light-border); }
+    .nav-logo { font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 80px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 40%, rgba(184,146,42,0.07) 0%, transparent 60%); pointer-events: none; }
+    .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 6rem 5rem 6rem 8rem; }
+    .hero-eyebrow { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.8rem; display: flex; align-items: center; gap: 1rem; }
+    .hero-eyebrow::before { content: ''; display: inline-block; width: 40px; height: 1px; background: var(--gold); }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 5.5vw, 6rem); font-weight: 300; line-height: 1.05; color: var(--ink); margin-bottom: 1rem; }
+    .hero-title em { font-style: italic; color: var(--gold); }
+    .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-style: italic; color: var(--mid); line-height: 1.6; margin-bottom: 2.8rem; max-width: 420px; }
+    .hero-ctas { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+    .btn-primary { background: var(--ink); color: var(--ivory); padding: 0.85rem 2.2rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; border: 2px solid var(--ink); transition: all 0.3s; }
+    .btn-primary:hover { background: var(--gold); border-color: var(--gold); }
+    .btn-outline { background: transparent; color: var(--ink); padding: 0.85rem 2.2rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; border: 2px solid var(--ink); transition: all 0.3s; }
+    .btn-outline:hover { background: var(--ink); color: var(--ivory); }
+    .hero-right { position: relative; display: flex; align-items: center; justify-content: center; padding: 6rem 6rem 6rem 2rem; }
+    .hero-img-frame { position: relative; width: 340px; }
+    .hero-img-frame::before { content: ''; position: absolute; top: -20px; left: -20px; right: 20px; bottom: 20px; border: 2px solid var(--gold); z-index: 0; }
+    .hero-img-frame img { width: 100%; height: 480px; object-fit: cover; object-position: top; position: relative; z-index: 1; filter: sepia(10%) contrast(1.05); }
+    .hero-quote { position: absolute; bottom: 80px; right: 30px; background: var(--ink); color: var(--ivory); padding: 1.5rem 2rem; max-width: 240px; z-index: 2; }
+    .hero-quote p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; line-height: 1.5; }
+    .hero-quote span { display: block; margin-top: 0.6rem; font-size: 0.7rem; letter-spacing: 0.12em; color: var(--gold-light); text-transform: uppercase; }
+
+    .section-rule { width: 60px; height: 2px; background: var(--gold); margin-bottom: 1.5rem; }
+    .section-tag { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: block; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 3.5vw, 3.8rem); font-weight: 300; line-height: 1.15; color: var(--ink); }
+
+    /* TICKER */
+    .tagline-strip { background: var(--ink); padding: 1.6rem 0; overflow: hidden; }
+    .tagline-inner { display: flex; gap: 4rem; animation: ticker 30s linear infinite; white-space: nowrap; }
+    .tagline-inner span { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: var(--ivory); opacity: 0.75; flex-shrink: 0; }
+    .tagline-inner span.dot { color: var(--gold); font-style: normal; font-size: 1.2rem; }
+    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* COMMENCEMENT BANNER */
+    .commencement-banner { position: relative; height: 500px; overflow: hidden; background: var(--ink); }
+    .commencement-banner img { width: 100%; height: 100%; object-fit: cover; object-position: center top; opacity: 0.75; transition: transform 8s ease; }
+    .commencement-banner:hover img { transform: scale(1.04); }
+    .commencement-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(26,21,16,0.88) 35%, rgba(26,21,16,0.2) 100%); display: flex; flex-direction: column; justify-content: center; padding: 4rem 8rem; }
+    .commencement-label { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 1rem; }
+    .commencement-label::before { content: ''; display: inline-block; width: 40px; height: 1px; background: var(--gold); }
+    .commencement-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; color: var(--ivory); line-height: 1.15; margin-bottom: 1.2rem; max-width: 600px; }
+    .commencement-title em { font-style: italic; color: var(--gold-light); }
+    .commencement-sub { font-size: 0.88rem; color: rgba(245,240,232,0.65); line-height: 1.6; max-width: 480px; }
+    .commencement-watch { display: inline-flex; align-items: center; gap: 0.7rem; margin-top: 2rem; background: transparent; border: 1px solid rgba(255,255,255,0.3); color: var(--ivory); padding: 0.7rem 1.5rem; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; width: fit-content; }
+    .commencement-watch:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+    .commencement-watch svg { width: 16px; height: 16px; fill: currentColor; }
+
+    /* CAROUSEL */
+    .carousel-section { padding: 6rem 0 5rem; background: var(--ivory); }
+    .carousel-header { text-align: center; padding: 0 8rem 3rem; }
+    .carousel-header .section-rule { margin: 1rem auto 0; }
+    .carousel-header .section-title { margin-top: 1rem; }
+    .carousel-track-wrapper { overflow: hidden; position: relative; padding: 1rem 0; }
+    .carousel-track-wrapper::before, .carousel-track-wrapper::after { content: ''; position: absolute; top: 0; bottom: 0; width: 140px; z-index: 2; pointer-events: none; }
+    .carousel-track-wrapper::before { left: 0; background: linear-gradient(to right, var(--ivory), transparent); }
+    .carousel-track-wrapper::after { right: 0; background: linear-gradient(to left, var(--ivory), transparent); }
+    .carousel-track { display: flex; gap: 1.5rem; animation: slide 45s linear infinite; width: max-content; }
+    .carousel-track:hover { animation-play-state: paused; }
+    @keyframes slide { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .carousel-slide { flex-shrink: 0; position: relative; overflow: hidden; cursor: pointer; box-shadow: 0 4px 20px rgba(26,21,16,0.1); }
+    .carousel-slide img { display: block; height: 300px; width: auto; max-width: 420px; object-fit: cover; transition: transform 0.5s, filter 0.4s; filter: sepia(8%); }
+    .carousel-slide:hover img { transform: scale(1.05); filter: sepia(0%); }
+    .slide-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(26,21,16,0.88) 0%, transparent 100%); color: var(--ivory); padding: 2.5rem 1.2rem 1rem; font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-style: italic; opacity: 0; transition: opacity 0.3s; }
+    .carousel-slide:hover .slide-caption { opacity: 1; }
+
+    /* ABOUT */
+    .about { display: grid; grid-template-columns: 1fr 1fr; padding: 8rem 8rem; background: var(--warm-white); }
+    .about-left { padding-right: 5rem; }
+    .about-right { padding-left: 3rem; border-left: 1px solid var(--light-border); }
+    .about-text { font-size: 0.95rem; line-height: 1.9; color: var(--mid); margin-bottom: 1.4rem; }
+    .awards { margin-top: 3rem; display: flex; flex-direction: column; gap: 1rem; }
+    .award-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 1.2rem; background: var(--ivory); border-left: 3px solid var(--gold); }
+    .award-year { font-family: 'Cinzel', serif; font-size: 0.75rem; color: var(--gold); letter-spacing: 0.1em; min-width: 45px; margin-top: 2px; }
+    .award-text { font-size: 0.88rem; line-height: 1.5; color: var(--mid); }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem; }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--ink); line-height: 1; }
+    .stat-label { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); margin-top: 0.3rem; }
+
+    /* VIDEOS */
+    .videos-section { padding: 8rem 8rem; background: var(--ink); }
+    .videos-section .section-tag { color: var(--gold-light); }
+    .videos-section .section-title { color: var(--ivory); }
+    .videos-header { margin-bottom: 4rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .video-featured { margin-bottom: 3rem; }
+    .video-featured .video-embed-wrap { position: relative; width: 100%; padding-top: 42%; background: #000; overflow: hidden; cursor: pointer; }
+    .video-featured .video-thumb { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+    .play-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(26,21,16,0.35); transition: background 0.3s; }
+    .video-embed-wrap:hover .play-overlay { background: rgba(26,21,16,0.15); }
+    .play-btn { width: 72px; height: 72px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; transition: transform 0.3s, background 0.3s; }
+    .video-embed-wrap:hover .play-btn { transform: scale(1.1); background: var(--gold-light); }
+    .play-btn svg { width: 28px; height: 28px; fill: var(--ink); margin-left: 4px; }
+    .video-featured-label { margin-top: 1.2rem; font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; display: block; }
+    .video-featured-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--ivory); line-height: 1.3; }
+    .videos-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem; }
+    .video-card { cursor: pointer; }
+    .video-thumb-wrap { position: relative; width: 100%; padding-top: 56.25%; background: #000; overflow: hidden; margin-bottom: 0.8rem; }
+    .video-thumb-wrap img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s, filter 0.4s; filter: sepia(8%); }
+    .video-card:hover .video-thumb-wrap img { transform: scale(1.05); filter: sepia(0%); }
+    .video-mini-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(26,21,16,0.3); transition: background 0.3s; }
+    .video-card:hover .video-mini-overlay { background: rgba(26,21,16,0.1); }
+    .play-btn-sm { width: 44px; height: 44px; border-radius: 50%; background: rgba(184,146,42,0.9); display: flex; align-items: center; justify-content: center; transition: transform 0.3s; }
+    .video-card:hover .play-btn-sm { transform: scale(1.15); }
+    .play-btn-sm svg { width: 16px; height: 16px; fill: var(--ink); margin-left: 3px; }
+    .video-card-title { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; color: rgba(245,240,232,0.85); line-height: 1.4; }
+
+    /* LIGHTBOX */
+    .lightbox { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; padding: 2rem; }
+    .lightbox.active { display: flex; }
+    .lightbox-inner { position: relative; width: 100%; max-width: 900px; }
+    .lightbox-inner iframe { width: 100%; aspect-ratio: 16/9; border: none; display: block; }
+    .lightbox-close { position: absolute; top: -44px; right: 0; background: none; border: none; color: var(--ivory); font-size: 2rem; cursor: pointer; line-height: 1; opacity: 0.7; transition: opacity 0.2s; }
+    .lightbox-close:hover { opacity: 1; }
+
+    /* ── ARTICLES ABOUT ME ── */
+    .articles-section { padding: 8rem 8rem; background: var(--warm-white); }
+    .articles-header { margin-bottom: 4rem; padding-bottom: 2rem; border-bottom: 1px solid var(--light-border); display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; }
+
+    /* Featured article — full width hero style */
+    .article-featured {
+      display: grid; grid-template-columns: 1fr 1.6fr;
+      border: 1px solid var(--light-border);
+      margin-bottom: 2rem;
+      text-decoration: none; color: inherit;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .article-featured:hover { box-shadow: 0 12px 40px rgba(26,21,16,0.12); transform: translateY(-3px); }
+    .article-featured-left {
+      background: var(--ink); padding: 3.5rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .article-featured-left .article-outlet { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.8rem; }
+    .article-featured-left .article-outlet::before { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--gold); }
+    .article-featured-left .article-type { display: inline-block; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; background: var(--gold); color: var(--ink); padding: 0.2rem 0.7rem; margin-bottom: 1.2rem; width: fit-content; font-weight: 600; }
+    .article-featured-left .article-title { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 300; color: var(--ivory); line-height: 1.25; margin-bottom: 1rem; }
+    .article-featured-left .article-desc { font-size: 0.88rem; line-height: 1.8; color: rgba(245,240,232,0.65); margin-bottom: 1.5rem; }
+    .article-featured-left .article-date { font-size: 0.72rem; letter-spacing: 0.1em; color: rgba(245,240,232,0.4); margin-bottom: 1.5rem; }
+    .article-read-link { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-light); text-decoration: none; font-weight: 500; border: 1px solid rgba(255,255,255,0.15); padding: 0.6rem 1.2rem; transition: all 0.3s; width: fit-content; }
+    .article-featured:hover .article-read-link { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+    .article-read-link svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; transition: transform 0.3s; }
+    .article-featured:hover .article-read-link svg { transform: translateX(4px); }
+    .article-featured-right { background: var(--ivory); display: flex; flex-direction: column; justify-content: center; padding: 3.5rem; gap: 0.6rem; }
+    .article-featured-right .article-highlight-label { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+    .article-featured-right .article-highlight { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-style: italic; line-height: 1.5; color: var(--ink); border-left: 3px solid var(--gold); padding-left: 1.5rem; }
+
+    /* Articles grid */
+    .articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .article-card {
+      background: var(--ivory); border: 1px solid var(--light-border);
+      padding: 1.8rem; display: flex; flex-direction: column;
+      text-decoration: none; color: inherit;
+      transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+    }
+    .article-card:hover { box-shadow: 0 8px 30px rgba(26,21,16,0.1); transform: translateY(-4px); border-color: var(--gold); }
+    .article-outlet { font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.6rem; }
+    .article-outlet::before { content: ''; display: inline-block; width: 18px; height: 1px; background: var(--gold); flex-shrink: 0; }
+    .article-type { display: inline-block; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; background: var(--ink); color: var(--ivory); padding: 0.18rem 0.55rem; margin-bottom: 0.9rem; width: fit-content; }
+    .article-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; line-height: 1.35; color: var(--ink); margin-bottom: 0.7rem; flex-grow: 1; }
+    .article-desc { font-size: 0.82rem; line-height: 1.7; color: var(--mid); margin-bottom: 1rem; }
+    .article-date { font-size: 0.7rem; letter-spacing: 0.08em; color: var(--mid); opacity: 0.6; margin-bottom: 1rem; }
+    .article-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-weight: 500; border-top: 1px solid var(--light-border); padding-top: 1rem; margin-top: auto; }
+    .article-link svg { width: 11px; height: 11px; fill: none; stroke: currentColor; stroke-width: 2; transition: transform 0.3s; }
+    .article-card:hover .article-link svg { transform: translateX(4px); }
+
+    /* PRESS */
+    .press { padding: 8rem 8rem; background: var(--ivory); }
+    .press-header { margin-bottom: 4rem; padding-bottom: 2rem; border-bottom: 1px solid var(--light-border); }
+    .press-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .press-card { background: var(--warm-white); border: 1px solid var(--light-border); padding: 2rem 2rem 1.8rem; display: flex; flex-direction: column; transition: box-shadow 0.3s, transform 0.3s; text-decoration: none; color: inherit; }
+    .press-card:hover { box-shadow: 0 8px 30px rgba(26,21,16,0.1); transform: translateY(-4px); }
+    .press-source { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.6rem; }
+    .press-source::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--gold); flex-shrink: 0; }
+    .press-type { display: inline-block; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; background: var(--ink); color: var(--ivory); padding: 0.2rem 0.6rem; margin-bottom: 1rem; width: fit-content; }
+    .press-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; line-height: 1.35; color: var(--ink); margin-bottom: 0.8rem; flex-grow: 1; }
+    .press-desc { font-size: 0.83rem; line-height: 1.7; color: var(--mid); margin-bottom: 1.4rem; }
+    .press-date { font-size: 0.72rem; letter-spacing: 0.1em; color: var(--mid); opacity: 0.6; }
+    .press-link { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.2rem; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-weight: 500; border-top: 1px solid var(--light-border); padding-top: 1rem; }
+    .press-link svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; transition: transform 0.3s; }
+    .press-card:hover .press-link svg { transform: translateX(4px); }
+    .press-card.featured { grid-column: span 3; display: grid; grid-template-columns: 1fr 2fr; gap: 0; align-items: stretch; padding: 0; }
+    .press-featured-left { background: var(--ink); padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; }
+    .press-featured-left .press-source { color: var(--gold-light); }
+    .press-featured-left .press-source::before { background: var(--gold); }
+    .press-featured-left .press-title { color: var(--ivory); font-size: 1.5rem; }
+    .press-featured-left .press-desc { color: rgba(245,240,232,0.65); }
+    .press-featured-left .press-link { color: var(--gold-light); border-top-color: rgba(255,255,255,0.1); }
+    .press-featured-left .press-type { background: var(--gold); color: var(--ink); }
+    .press-featured-right { padding: 2rem; background: var(--warm-white); }
+    .press-sub-cards { display: flex; flex-direction: column; gap: 1rem; height: 100%; }
+    .press-sub-card { background: var(--ivory); border: 1px solid var(--light-border); padding: 1.4rem 1.6rem; display: flex; flex-direction: column; gap: 0.4rem; text-decoration: none; color: inherit; transition: border-color 0.3s; flex: 1; }
+    .press-sub-card:hover { border-color: var(--gold); }
+    .press-sub-card .press-source { margin-bottom: 0; }
+    .press-sub-card .press-title { font-size: 1rem; margin-bottom: 0; flex-grow: 0; }
+    .press-sub-card .press-desc { font-size: 0.8rem; margin-bottom: 0; flex-grow: 1; }
+    .press-sub-card .press-link { margin-top: 0.5rem; padding-top: 0.5rem; }
+
+    /* BOOKS */
+    .books-section { padding: 8rem 8rem; background: var(--ivory); }
+    .books-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; padding-bottom: 2rem; border-bottom: 1px solid var(--light-border); }
+    .books-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; }
+    .book-card { cursor: pointer; transition: transform 0.3s; }
+    .book-card:hover { transform: translateY(-8px); }
+    .book-cover { width: 100%; aspect-ratio: 2/3; background: var(--light-border); margin-bottom: 1.4rem; overflow: hidden; position: relative; }
+    .book-cover img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .book-card:hover .book-cover img { transform: scale(1.04); }
+    .book-cover-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,21,16,0.7) 0%, transparent 50%); opacity: 0; transition: opacity 0.3s; display: flex; align-items: flex-end; padding: 1.2rem; }
+    .book-card:hover .book-cover-overlay { opacity: 1; }
+    .book-cover-overlay a { background: var(--gold); color: var(--ink); padding: 0.5rem 1.2rem; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; font-weight: 500; }
+    .book-num { font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; color: var(--gold); font-style: italic; margin-bottom: 0.4rem; }
+    .book-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--ink); line-height: 1.3; margin-bottom: 0.5rem; }
+    .book-desc { font-size: 0.8rem; color: var(--mid); line-height: 1.6; }
+
+    /* SERVICES */
+    .services { background: var(--ink); padding: 8rem 8rem; color: var(--ivory); }
+    .services .section-title { color: var(--ivory); }
+    .services .section-tag { color: var(--gold-light); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; margin-top: 4rem; }
+    .service-card { padding: 2.5rem; border: 1px solid rgba(255,255,255,0.1); transition: border-color 0.3s, background 0.3s; }
+    .service-card:hover { border-color: var(--gold); background: rgba(184,146,42,0.06); }
+    .service-icon { width: 40px; height: 2px; background: var(--gold); margin-bottom: 2rem; }
+    .service-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; margin-bottom: 1rem; color: var(--ivory); }
+    .service-text { font-size: 0.88rem; line-height: 1.8; color: rgba(245,240,232,0.6); }
+
+    /* CONTACT */
+    .contact { padding: 8rem 8rem; background: var(--warm-white); display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; }
+    .contact-info p { font-size: 0.92rem; line-height: 1.9; color: var(--mid); margin-bottom: 2rem; }
+    .social-links { display: flex; gap: 1.2rem; margin-top: 1rem; }
+    .social-link { width: 40px; height: 40px; border: 1px solid var(--light-border); display: flex; align-items: center; justify-content: center; text-decoration: none; color: var(--mid); font-size: 0.8rem; transition: all 0.3s; }
+    .social-link:hover { background: var(--ink); color: var(--ivory); border-color: var(--ink); }
+    .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-field { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-field label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); }
+    .form-field input, .form-field textarea { background: var(--ivory); border: 1px solid var(--light-border); padding: 0.85rem 1rem; font-size: 0.88rem; color: var(--ink); outline: none; transition: border-color 0.3s; resize: none; font-family: 'Jost', sans-serif; }
+    .form-field input:focus, .form-field textarea:focus { border-color: var(--gold); }
+    .form-submit { margin-top: 0.5rem; background: var(--ink); color: var(--ivory); border: 2px solid var(--ink); padding: 0.9rem 2.5rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; align-self: flex-start; transition: all 0.3s; font-family: 'Jost', sans-serif; }
+    .form-submit:hover { background: var(--gold); border-color: var(--gold); }
+
+    /* FOOTER */
+    footer { background: var(--ink); padding: 3rem 8rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.06); }
+    footer .footer-logo { font-family: 'Cinzel', serif; font-size: 0.9rem; letter-spacing: 0.15em; color: var(--ivory); }
+    footer p { font-size: 0.75rem; color: rgba(245,240,232,0.35); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1200px) { .videos-grid { grid-template-columns: repeat(3, 1fr); } .articles-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 1100px) { .press-grid { grid-template-columns: 1fr 1fr; } .press-card.featured { grid-column: span 2; grid-template-columns: 1fr; } .article-featured { grid-template-columns: 1fr; } }
+    @media (max-width: 1024px) {
+      nav { padding: 1rem 2rem; } .nav-links { gap: 1rem; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 6rem 3rem 3rem; } .hero-right { padding: 2rem 3rem 5rem; justify-content: flex-start; }
+      .commencement-overlay { padding: 3rem; }
+      .about, .books-section, .services, .contact, footer, .press, .videos-section, .articles-section { padding: 5rem 3rem; }
+      .carousel-header { padding: 0 3rem 3rem; }
+      .about { grid-template-columns: 1fr; }
+      .about-right { border-left: none; padding-left: 0; border-top: 1px solid var(--light-border); padding-top: 3rem; margin-top: 3rem; }
+      .about-left { padding-right: 0; }
+      .books-grid { grid-template-columns: 1fr 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .contact { grid-template-columns: 1fr; gap: 3rem; }
+      .videos-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) { .press-grid { grid-template-columns: 1fr; } .press-card.featured { grid-column: span 1; } .articles-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hero-left { padding: 5rem 1.5rem 2rem; } .hero-right { padding: 1.5rem 1.5rem 4rem; } .hero-img-frame { width: 100%; }
+      .commencement-banner { height: 380px; } .commencement-overlay { padding: 2rem 1.5rem; }
+      .carousel-slide img { height: 220px; } .carousel-header { padding: 0 1.5rem 2rem; }
+      .about, .books-section, .services, .contact, footer, .press, .videos-section, .articles-section { padding: 4rem 1.5rem; }
+      .books-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+      .books-header { flex-direction: column; gap: 1rem; align-items: flex-start; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .form-row { grid-template-columns: 1fr; }
+      .videos-grid { grid-template-columns: 1fr; }
+      .video-featured .video-embed-wrap { padding-top: 56.25%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+      <iframe id="lightboxFrame" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">Dr. Masachs Boungou</a>
+    <ul class="nav-links">
+      <li><a href="#commencement">Commencement</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#videos">Videos</a></li>
+      <li><a href="#articles">Articles</a></li>
+      <li><a href="#press">Press</a></li>
+      <li><a href="#books">Books</a></li>
+      <li><a href="#work">Work With Me</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left reveal">
+      <p class="hero-eyebrow">MEDIA CIVIC INNOVATOR · SCHOLAR-ENTREPRENEUR · SPEAKER · AUTHOR</p>
+      <h1 class="hero-title">Dr. Masachs<br/><em>Boungou</em></h1>
+      <p class="hero-subtitle">Turning personal tragedy into triumph — and using the power of story to shape leaders, entrepreneurs, and communities.</p>
+      <div class="hero-ctas">
+        <a href="#books" class="btn-primary">Explore Books</a>
+        <a href="#work" class="btn-outline">Work With Me</a>
+      </div>
+    </div>
+    <div class="hero-right reveal">
+      <div class="hero-img-frame">
+        <img src="images/profile.jpg" alt="Dr. Masachs Boungou"/>
+        <div class="hero-quote">
+          <p>"History is not the past. It is who we are."</p>
+          <span>— Dr. Masachs Boungou</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="tagline-strip">
+    <div class="tagline-inner">
+      <span>The Power of Personal History</span><span class="dot">✦</span><span>The Struggle We Carry</span><span class="dot">✦</span><span>Shared Prosperity</span><span class="dot">✦</span><span>Personal Crisis</span><span class="dot">✦</span><span>Fulbright Scholar</span><span class="dot">✦</span><span>Ph.D. in Global Studies · UMass Lowell</span><span class="dot">✦</span><span>Commencement Speaker · Class of 2022</span><span class="dot">✦</span><span>Boston University · Pardee School</span><span class="dot">✦</span>
+      <span>The Power of Personal History</span><span class="dot">✦</span><span>The Struggle We Carry</span><span class="dot">✦</span><span>Shared Prosperity</span><span class="dot">✦</span><span>Personal Crisis</span><span class="dot">✦</span><span>Fulbright Scholar</span><span class="dot">✦</span><span>Ph.D. in Global Studies · UMass Lowell</span><span class="dot">✦</span><span>Commencement Speaker · Class of 2022</span><span class="dot">✦</span><span>Boston University · Pardee School</span><span class="dot">✦</span>
+    </div>
+  </div>
+
+  <!-- COMMENCEMENT BANNER -->
+  <section class="commencement-banner" id="commencement">
+    <img src="images/commencement.jpg" alt="Dr. Masachs Boungou — UMass Lowell Commencement Speaker 2022"/>
+    <div class="commencement-overlay">
+      <span class="commencement-label">A Historic Milestone</span>
+      <h2 class="commencement-title">Commencement Speaker<br/><em>UMass Lowell · Class of 2022</em></h2>
+      <p class="commencement-sub">Dr. Masachs Boungou addressed the graduating Class of 2022 at the University of Massachusetts, Lowell — sharing his extraordinary story of survival, scholarship, and the enduring power of personal history.</p>
+      <a class="commencement-watch" href="https://www.youtube.com/watch?v=d-iELKGmoaI" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Watch the Speech
+      </a>
+    </div>
+  </section>
+
+  <!-- ROLLING CAROUSEL -->
+  <section class="carousel-section" id="gallery">
+    <div class="carousel-header reveal">
+      <span class="section-tag">Moments & Milestones</span>
+      <div class="section-rule"></div>
+      <h2 class="section-title">A Life in Pictures</h2>
+    </div>
+    <div class="carousel-track-wrapper">
+      <div class="carousel-track">
+        <div class="carousel-slide"><img src="images/commencement.jpg" alt="Commencement"/><div class="slide-caption">UMass Lowell — Commencement Speaker, Class of 2022</div></div>
+        <div class="carousel-slide"><img src="images/profile.jpg" alt="Portrait" style="width:240px"/><div class="slide-caption">Dr. Masachs Boungou — Media Civic Innovator · Scholar-Entrepreneur</div></div>
+        <div class="carousel-slide"><img src="images/speaking.jpg" alt="Speaking"/><div class="slide-caption">Speaking Engagement</div></div>
+        <div class="carousel-slide"><img src="images/portrait2.jpg" alt="Portrait 2" style="width:240px"/><div class="slide-caption">Dr. Masachs Boungou</div></div>
+        <div class="carousel-slide"><img src="images/community.jpg" alt="Community"/><div class="slide-caption">Community & Leadership</div></div>
+        <div class="carousel-slide"><img src="images/event.jpg" alt="Event"/><div class="slide-caption">Speaking & Advocacy</div></div>
+        <div class="carousel-slide"><img src="images/book1.jpg" alt="Book 1" style="width:210px"/><div class="slide-caption">The Struggle We Carry</div></div>
+        <div class="carousel-slide"><img src="images/book2.jpg" alt="Book 2" style="width:210px"/><div class="slide-caption">The Power of Personal History</div></div>
+        <div class="carousel-slide"><img src="images/commencement.jpg" alt="Commencement"/><div class="slide-caption">UMass Lowell — Commencement Speaker, Class of 2022</div></div>
+        <div class="carousel-slide"><img src="images/profile.jpg" alt="Portrait" style="width:240px"/><div class="slide-caption">Dr. Masachs Boungou — Media Civic Innovator · Scholar-Entrepreneur</div></div>
+        <div class="carousel-slide"><img src="images/speaking.jpg" alt="Speaking"/><div class="slide-caption">Speaking Engagement</div></div>
+        <div class="carousel-slide"><img src="images/portrait2.jpg" alt="Portrait 2" style="width:240px"/><div class="slide-caption">Dr. Masachs Boungou</div></div>
+        <div class="carousel-slide"><img src="images/community.jpg" alt="Community"/><div class="slide-caption">Community & Leadership</div></div>
+        <div class="carousel-slide"><img src="images/event.jpg" alt="Event"/><div class="slide-caption">Speaking & Advocacy</div></div>
+        <div class="carousel-slide"><img src="images/book1.jpg" alt="Book 1" style="width:210px"/><div class="slide-caption">The Struggle We Carry</div></div>
+        <div class="carousel-slide"><img src="images/book2.jpg" alt="Book 2" style="width:210px"/><div class="slide-caption">The Power of Personal History</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-left reveal">
+      <span class="section-tag">Biography</span>
+      <div class="section-rule"></div>
+      <h2 class="section-title">A Story Forged in Adversity</h2>
+      <p class="about-text">Dr. Masachs Boungou (pronounced <em>Ma'Zash Boon'Goo</em>) is from the Republic of the Congo, now living in the United States. Born to a mother who never finished high school but championed the inspirational power of education, he survived a civil war in 1999 and taught himself English as an adult by listening to Voice of America broadcasts.</p>
+      <p class="about-text">As a Fulbright Scholar, he earned a dual master's degree in Sustainable International Development and Coexistence & Conflict Studies from Brandeis University's Heller School. He later earned his Ph.D. in Global Studies from the University of Massachusetts, Lowell in 2022, where he proudly served as commencement speaker for the Class of 2022.</p>
+      <p class="about-text">He currently serves as a Lecturer of Africa in International Politics at Boston University's Frederick S. Pardee School of Global Studies. His research focuses on the intersection of conflict experiences, entrepreneurialism, and youth economic empowerment in Africa.</p>
+    </div>
+    <div class="about-right reveal">
+      <div class="about-stats">
+        <div class="stat-block"><div class="stat-num">4</div><div class="stat-label">Published Books</div></div>
+        <div class="stat-block"><div class="stat-num">Ph.D</div><div class="stat-label">Global Studies</div></div>
+        <div class="stat-block"><div class="stat-num">2022</div><div class="stat-label">Commencement Speaker</div></div>
+        <div class="stat-block"><div class="stat-num">BU</div><div class="stat-label">Pardee School Lecturer</div></div>
+      </div>
+      <div class="awards">
+        <div class="award-item"><span class="award-year">2018</span><span class="award-text">New Leaders Group Award — Institute of International Education (IIE)</span></div>
+        <div class="award-item"><span class="award-year">2020</span><span class="award-text">Social Change Grant — The Pollination Project</span></div>
+        <div class="award-item"><span class="award-year">2016</span><span class="award-text">Fulbright Scholar — Brandeis University Heller School</span></div>
+        <div class="award-item"><span class="award-year">2016</span><span class="award-text">Founder, Nunga Program — Youth Entrepreneurship & Peacebuilding, Congo</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section class="videos-section" id="videos">
+    <div class="videos-header reveal">
+      <span class="section-tag">Watch & Listen</span>
+      <div class="section-rule"></div>
+      <h2 class="section-title">Featured Videos</h2>
+    </div>
+    <div class="video-featured reveal">
+      <div class="video-embed-wrap" onclick="openLightbox('d-iELKGmoaI')">
+        <img class="video-thumb" src="https://img.youtube.com/vi/d-iELKGmoaI/maxresdefault.jpg" alt="UMass Lowell Commencement Speech"/>
+        <div class="play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+      </div>
+      <span class="video-featured-label">Featured · UMass Lowell · 2022</span>
+      <h3 class="video-featured-title">Why We Must Embrace Our Personal History — UMass Lowell Commencement Speech 2022</h3>
+    </div>
+    <div class="videos-grid">
+      <div class="video-card reveal" onclick="openLightbox('yZNdlxw1v6U')"><div class="video-thumb-wrap"><img src="https://img.youtube.com/vi/yZNdlxw1v6U/hqdefault.jpg" alt="Video"/><div class="video-mini-overlay"><div class="play-btn-sm"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div></div><p class="video-card-title">Dr. Masachs Boungou — Talk & Interview</p></div>
+      <div class="video-card reveal" onclick="openLightbox('CJ6sopd5fp8')"><div class="video-thumb-wrap"><img src="https://img.youtube.com/vi/CJ6sopd5fp8/hqdefault.jpg" alt="Future Optimist"/><div class="video-mini-overlay"><div class="play-btn-sm"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div></div><p class="video-card-title">How Trauma Helps Immigrant Entrepreneurs — Future Optimist #218</p></div>
+      <div class="video-card reveal" onclick="openLightbox('pAoZa_z-9EU')"><div class="video-thumb-wrap"><img src="https://img.youtube.com/vi/pAoZa_z-9EU/hqdefault.jpg" alt="Video"/><div class="video-mini-overlay"><div class="play-btn-sm"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div></div><p class="video-card-title">Dr. Masachs Boungou — Keynote & Presentation</p></div>
+      <div class="video-card reveal" onclick="openLightbox('yjcpHWQ0PGE')"><div class="video-thumb-wrap"><img src="https://img.youtube.com/vi/yjcpHWQ0PGE/hqdefault.jpg" alt="Video"/><div class="video-mini-overlay"><div class="play-btn-sm"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div></div><p class="video-card-title">The Power of Personal History — Voice of America Interview</p></div>
+      <div class="video-card reveal" onclick="openLightbox('QddUk1c2dq4')"><div class="video-thumb-wrap"><img src="https://img.youtube.com/vi/QddUk1c2dq4/hqdefault.jpg" alt="Video"/><div class="video-mini-overlay"><div class="play-btn-sm"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div></div><p class="video-card-title">Dr. Masachs Boungou — Interview & Discussion</p></div>
+      <div class="video-card reveal" onclick="openLightbox('qACKFEhofCA')"><div class="video-thumb-wrap"><img src="https://img.youtube.com/vi/qACKFEhofCA/hqdefault.jpg" alt="Video"/><div class="video-mini-overlay"><div class="play-btn-sm"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div></div><p class="video-card-title">Leadership & Entrepreneurship — Dr. Masachs</p></div>
+      <div class="video-card reveal" onclick="openLightbox('7vUF251MFEE')"><div class="video-thumb-wrap"><img src="https://img.youtube.com/vi/7vUF251MFEE/hqdefault.jpg" alt="Video"/><div class="video-mini-overlay"><div class="play-btn-sm"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div></div><p class="video-card-title">Dr. Masachs Boungou — Resilience & Success</p></div>
+      <div class="video-card reveal" onclick="openLightbox('xn4j1a43jNo')"><div class="video-thumb-wrap"><img src="https://img.youtube.com/vi/xn4j1a43jNo/hqdefault.jpg" alt="Video"/><div class="video-mini-overlay"><div class="play-btn-sm"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div></div><p class="video-card-title">Dr. Masachs Boungou — Speaker Session</p></div>
+      <div class="video-card reveal" onclick="openLightbox('G5IyBMcG51w')"><div class="video-thumb-wrap"><img src="https://img.youtube.com/vi/G5IyBMcG51w/hqdefault.jpg" alt="Video"/><div class="video-mini-overlay"><div class="play-btn-sm"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div></div><p class="video-card-title">Personal Crisis & Business Leadership</p></div>
+      <div class="video-card reveal" onclick="openLightbox('6E69zM8A04o')"><div class="video-thumb-wrap"><img src="https://img.youtube.com/vi/6E69zM8A04o/hqdefault.jpg" alt="Video"/><div class="video-mini-overlay"><div class="play-btn-sm"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div></div><p class="video-card-title">Dr. Masachs Boungou — Shared Prosperity</p></div>
+    </div>
+  </section>
+
+  <!-- ★ ARTICLES ABOUT ME ★ -->
+  <section class="articles-section" id="articles">
+    <div class="articles-header reveal">
+      <div>
+        <span class="section-tag">Written About Dr. Masachs</span>
+        <div class="section-rule"></div>
+        <h2 class="section-title">Articles About Me</h2>
+      </div>
+    </div>
+
+    <!-- Featured article: Nashua Telegraph -->
+    <a class="article-featured reveal" href="https://www.nashuatelegraph.com/news/local-news/2022/05/15/possibility-paving-the-way-at-center-of-umass-lowell-2022-commencement-keynote-addresses/" target="_blank">
+      <div class="article-featured-left">
+        <span class="article-outlet">The Nashua Telegraph</span>
+        <span class="article-type">News Coverage · May 15, 2022</span>
+        <h3 class="article-title">Possibility, Paving the Way at Center of UMass Lowell 2022 Commencement Keynote Addresses</h3>
+        <p class="article-desc">Regional newspaper coverage of UMass Lowell's largest and most diverse graduating class, featuring Dr. Masachs Boungou as student speaker — a first-generation graduate and native of the Republic of the Congo who shared his story of growing up amid civil war and finding his calling through education.</p>
+        <span class="article-date">The Nashua Telegraph · May 15, 2022</span>
+        <span class="article-read-link">Read Article <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </div>
+      <div class="article-featured-right">
+        <p class="article-highlight-label">From the Article</p>
+        <p class="article-highlight">"Masachs Boungou, a first-generation college graduate and native of the Republic of the Congo, described a childhood of uncertainty and fear in a country gripped by violence and civil war. Calling UMass Lowell a 'touchstone,' he spoke of the university as a community that prepared him and fellow graduates for what's to come."</p>
+      </div>
+    </a>
+
+    <!-- 3-column grid -->
+    <div class="articles-grid">
+
+      <a class="article-card reveal" href="https://www.uml.edu/fahss/global-studies/" target="_blank">
+        <span class="article-outlet">UMass Lowell</span>
+        <span class="article-type">University Feature</span>
+        <h3 class="article-title">Global Studies Program — UMass Lowell FAHSS</h3>
+        <p class="article-desc">Dr. Masachs is featured as a distinguished alumnus of UMass Lowell's Ph.D. in Global Studies program — a former Fulbright Fellow who founded a nonprofit for underprivileged youth in the Republic of the Congo before earning his doctorate and making his impact felt internationally.</p>
+        <span class="article-date">University of Massachusetts Lowell</span>
+        <span class="article-link">Read Feature <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a class="article-card reveal" href="https://www.bu.edu/africa/profile/masachs-boungou/" target="_blank">
+        <span class="article-outlet">Boston University</span>
+        <span class="article-type">Academic Profile · African Studies Center</span>
+        <h3 class="article-title">Masachs Boungou — African Studies Center, Lecturer in International Relations</h3>
+        <p class="article-desc">Dr. Masachs is profiled at BU's African Studies Center as a Lecturer of International Relations, with credentials from the University of Massachusetts Lowell (Ph.D.), Brandeis University (M.A.), and Marien Ngouabi University (B.A.).</p>
+        <span class="article-date">Boston University African Studies Center</span>
+        <span class="article-link">View Profile <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a class="article-card reveal" href="https://www.nikkigroom.com/blog/the-power-of-your-personal-history-with-dr-masachs-boungou" target="_blank">
+        <span class="article-outlet">Nikki Groom</span>
+        <span class="article-type">Blog Interview · September 2022</span>
+        <h3 class="article-title">The Power of Your Personal History With Dr. Masachs Boungou</h3>
+        <p class="article-desc">An in-depth conversation on how Dr. Masachs escaped civil war in the Republic of the Congo, became a Fulbright Scholar, earned his Ph.D., and now teaches others to transform their personal tragedies into a source of entrepreneurial strength and purpose.</p>
+        <span class="article-date">September 19, 2022</span>
+        <span class="article-link">Read Interview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a class="article-card reveal" href="https://brucerosenstein.com/three-questions-for-dr-masachs-boungou-author-of-the-power-of-personal-history-turning-ones-life-tragedies-into-triumph/" target="_blank">
+        <span class="article-outlet">Bruce Rosenstein</span>
+        <span class="article-type">Author Interview · June 2024</span>
+        <h3 class="article-title">Three Questions for Dr. Masachs Boungou, Author of The Power of Personal History</h3>
+        <p class="article-desc">Bruce Rosenstein — author, editor, and Peter Drucker authority — interviews Dr. Masachs about his life story, his scholarly article on how life-shock experiences drive immigrant entrepreneurs, and his origin story as a writer, teacher, and social entrepreneur.</p>
+        <span class="article-date">June 14, 2024</span>
+        <span class="article-link">Read Interview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a class="article-card reveal" href="https://brucerosenstein.com/three-additional-questions-for-dr-masachs-boungou-author-of-personal-crisis-building-a-strong-leadership-and-shaping-business-success/" target="_blank">
+        <span class="article-outlet">Bruce Rosenstein</span>
+        <span class="article-type">Author Interview · October 2024</span>
+        <h3 class="article-title">Three (Additional) Questions for Dr. Masachs Boungou, Author of Personal Crisis</h3>
+        <p class="article-desc">A follow-up interview exploring Dr. Masachs' motivation for publishing four books in under two years, his concept of "Ubuntu capitalist entrepreneurship," and how his work relates to the missions of organizations like the World Bank, IMF, and United Nations.</p>
+        <span class="article-date">October 16, 2024</span>
+        <span class="article-link">Read Interview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a class="article-card reveal" href="https://www.bu.edu/pardeeschool/profile/masachs-boungou/" target="_blank">
+        <span class="article-outlet">Boston University · Pardee School</span>
+        <span class="article-type">Faculty Profile</span>
+        <h3 class="article-title">Masachs Boungou — Frederick S. Pardee School of Global Studies</h3>
+        <p class="article-desc">The official BU Pardee School faculty profile for Dr. Masachs as Lecturer of Africa in International Politics, detailing his academic credentials, dissertation research on sub-Saharan African immigrant entrepreneurs, and his work at the intersection of conflict, identity, and economic empowerment.</p>
+        <span class="article-date">Boston University Pardee School</span>
+        <span class="article-link">View Profile <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- PRESS & RECOGNITION -->
+  <section class="press" id="press">
+    <div class="press-header reveal">
+      <span class="section-tag">As Featured In</span>
+      <div class="section-rule"></div>
+      <h2 class="section-title">Press & Recognition</h2>
+    </div>
+    <div class="press-grid">
+      <div class="press-card featured reveal">
+        <div class="press-featured-left">
+          <span class="press-source">Boston University</span>
+          <span class="press-type">Academic Profile</span>
+          <h3 class="press-title">Pardee School of Global Studies — Faculty Profile</h3>
+          <p class="press-desc">Dr. Masachs is recognized as a Lecturer of Africa in International Politics at BU's prestigious Frederick S. Pardee School of Global Studies, highlighting his research on conflict experiences and entrepreneurialism among sub-Saharan African immigrants.</p>
+          <a class="press-link" href="https://www.bu.edu/pardeeschool/profile/masachs-boungou/" target="_blank">Read Full Profile <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+        <div class="press-featured-right">
+          <div class="press-sub-cards">
+            <a class="press-sub-card" href="https://www.lowellsun.com/2022/06/06/local-african-author-masachs-boungou-details-personal-tragedies-resilience-in-new-memoir/" target="_blank">
+              <span class="press-source">The Lowell Sun</span>
+              <span class="press-type">Newspaper Feature · June 2022</span>
+              <h4 class="press-title">Local African Author Details Personal Tragedies & Resilience in New Memoir</h4>
+              <p class="press-desc">A feature story on Dr. Masachs' journey from the Republic of the Congo to becoming a celebrated author and scholar in the Lowell community.</p>
+              <span class="press-link">Read Article <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            </a>
+            <a class="press-sub-card" href="https://brucerosenstein.com/three-additional-questions-for-dr-masachs-boungou-author-of-personal-crisis-building-a-strong-leadership-and-shaping-business-success/" target="_blank">
+              <span class="press-source">Bruce Rosenstein</span>
+              <span class="press-type">Author Interview · October 2024</span>
+              <h4 class="press-title">Three (Additional) Questions for Dr. Masachs Boungou</h4>
+              <p class="press-desc">A two-part interview on publishing four books, "Ubuntu capitalist entrepreneurship," and his vision for the World Bank, IMF, and United Nations.</p>
+              <span class="press-link">Read Interview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <a class="press-card reveal" href="https://podcast.unmistakablecreative.com/masachs-boungou-turning-the-pain-and-personal-history-into-meaning-and-purpose/" target="_blank">
+        <span class="press-source">Unmistakable Creative</span>
+        <span class="press-type">Podcast · 51 Minutes</span>
+        <h3 class="press-title">Turning the Pain and Personal History into Meaning and Purpose</h3>
+        <p class="press-desc">Dr. Masachs joins one of the world's top creativity podcasts to share how personal history shapes who we are and drives us toward our true potential.</p>
+        <span class="press-date">August 17, 2022</span>
+        <span class="press-link">Listen Now <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+      <a class="press-card reveal" href="https://podcasts.apple.com/us/podcast/dr-masachs-boungou-how-real-adversity-leads-to-stronger/id1533690826?i=1000663414388" target="_blank">
+        <span class="press-source">Future Optimist Podcast</span>
+        <span class="press-type">Podcast · Episode 218</span>
+        <h3 class="press-title">How REAL Adversity Leads to Stronger Entrepreneurs — Ep. 218</h3>
+        <p class="press-desc">How extreme personal tragedy drove 25 entrepreneurs Dr. Masachs studied to later business greatness in America.</p>
+        <span class="press-date">July 26, 2024</span>
+        <span class="press-link">Listen Now <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+      <a class="press-card reveal" href="https://www.nikkigroom.com/blog/the-power-of-your-personal-history-with-dr-masachs-boungou" target="_blank">
+        <span class="press-source">Nikki Groom</span>
+        <span class="press-type">Blog Interview</span>
+        <h3 class="press-title">The Power of Your Personal History With Dr. Masachs Boungou</h3>
+        <p class="press-desc">How to use personal setbacks as fuel for entrepreneurial endeavors, and how embracing your history propels you forward.</p>
+        <span class="press-date">September 19, 2022</span>
+        <span class="press-link">Read Interview <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- BOOKS -->
+  <section class="books-section" id="books">
+    <div class="books-header reveal">
+      <div>
+        <span class="section-tag">Published Works</span>
+        <div class="section-rule"></div>
+        <h2 class="section-title">Books by Dr. Masachs</h2>
+      </div>
+    </div>
+    <div class="books-grid">
+      <div class="book-card reveal"><div class="book-cover"><img src="images/book1.jpg" alt="The Struggle We Carry"/><div class="book-cover-overlay"><a href="https://www.amazon.com/Struggle-We-Carry-Defining-Existence/dp/B0BYH3X79P/" target="_blank">Buy on Amazon</a></div></div><p class="book-num">Book I</p><h3 class="book-title">The Struggle We Carry</h3><p class="book-desc">Defining our existence as a success or failure.</p></div>
+      <div class="book-card reveal"><div class="book-cover"><img src="images/book2.jpg" alt="The Power of Personal History"/><div class="book-cover-overlay"><a href="https://www.amazon.com/Power-Personal-History-Turning-tragedies/dp/B09ZCS93BX/" target="_blank">Buy on Amazon</a></div></div><p class="book-num">Book II</p><h3 class="book-title">The Power of Personal History</h3><p class="book-desc">Turning life's tragedies into triumph.</p></div>
+      <div class="book-card reveal"><div class="book-cover"><img src="images/book3.jpg" alt="Shared Prosperity"/><div class="book-cover-overlay"><a href="#" target="_blank">Available Now</a></div></div><p class="book-num">Book III</p><h3 class="book-title">Shared Prosperity</h3><p class="book-desc">A Path Forward For Sub-Saharan Africa.</p></div>
+      <div class="book-card reveal"><div class="book-cover"><img src="images/book4.jpg" alt="Personal Crisis"/><div class="book-cover-overlay"><a href="https://www.amazon.com/PERSONAL-CRISIS-Building-Leadership-Business-ebook/dp/B0D7QNLBYZ/" target="_blank">Buy on Amazon</a></div></div><p class="book-num">Book IV</p><h3 class="book-title">Personal Crisis</h3><p class="book-desc">Building A Leadership Story And Shaping Business Success.</p></div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="work">
+    <span class="section-tag">Work With Dr. Masachs</span>
+    <div class="section-rule"></div>
+    <h2 class="section-title">How We Can Collaborate</h2>
+    <div class="services-grid">
+      <div class="service-card reveal"><div class="service-icon"></div><h3 class="service-title">Speaking Engagements</h3><p class="service-text">Dr. Masachs brings his extraordinary personal story to conferences, universities, and corporate events — delivering keynotes that challenge and inspire audiences to reflect on their own power of history.</p></div>
+      <div class="service-card reveal"><div class="service-icon"></div><h3 class="service-title">Leadership Workshops</h3><p class="service-text">A five-session practical workshop on the strategic use of personal history in business leadership and success — for corporate managers, MBA students, and aspiring entrepreneurs.</p></div>
+      <div class="service-card reveal"><div class="service-icon"></div><h3 class="service-title">Book Talks & Trainings</h3><p class="service-text">Engaging author sessions exploring the themes of his published works — ideal for book clubs, academic institutions, non-profits, and community organizations.</p></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-info reveal">
+      <span class="section-tag">Get In Touch</span>
+      <div class="section-rule"></div>
+      <h2 class="section-title">Let's Start a Conversation</h2>
+      <p>Contact Dr. Masachs for speaking engagements, book talks, workshops and trainings, collaborations, and general inquiries. He looks forward to hearing from you.</p>
+      <div class="social-links">
+        <a class="social-link" href="https://www.youtube.com/watch?v=d-iELKGmoaI" target="_blank">YT</a>
+        <a class="social-link" href="https://twitter.com/MasachsB" target="_blank">X</a>
+        <a class="social-link" href="https://www.linkedin.com/in/juanboungou/" target="_blank">in</a>
+      </div>
+    </div>
+    <div class="contact-form reveal">
+      <div class="form-row">
+        <div class="form-field"><label>First Name</label><input type="text" placeholder="Jane"/></div>
+        <div class="form-field"><label>Last Name</label><input type="text" placeholder="Doe"/></div>
+      </div>
+      <div class="form-field"><label>Email</label><input type="email" placeholder="jane@example.com"/></div>
+      <div class="form-field"><label>Message</label><textarea rows="5" placeholder="Tell me about your inquiry..."></textarea></div>
+      <button class="form-submit">Send Message</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">Dr. Masachs Boungou</span>
+    <p>© 2025 Dr. Masachs Boungou. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+    document.querySelectorAll('.book-card').forEach((card, i) => { card.style.transitionDelay = `${i * 0.1}s`; });
+
+    function openLightbox(videoId) {
+      document.getElementById('lightboxFrame').src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(e) {
+      if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lightbox-close')) {
+        document.getElementById('lightboxFrame').src = '';
+        document.getElementById('lightbox').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+</body>
+</html>
