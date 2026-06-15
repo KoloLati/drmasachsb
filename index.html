@@ -35,11 +35,11 @@
     .btn-primary:hover { background: var(--gold); border-color: var(--gold); }
     .btn-outline { background: transparent; color: var(--ink); padding: 0.85rem 2.2rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; border: 2px solid var(--ink); transition: all 0.3s; }
     .btn-outline:hover { background: var(--ink); color: var(--ivory); }
-    .hero-right { position: relative; display: flex; align-items: center; justify-content: center; padding: 6rem 6rem 6rem 2rem; }
+    .hero-right { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 6rem 6rem 6rem 2rem; }
     .hero-img-frame { position: relative; width: 340px; }
     .hero-img-frame::before { content: ''; position: absolute; top: -20px; left: -20px; right: 20px; bottom: 20px; border: 2px solid var(--gold); z-index: 0; }
     .hero-img-frame img { width: 100%; height: 480px; object-fit: cover; object-position: top; position: relative; z-index: 1; filter: sepia(10%) contrast(1.05); }
-    .hero-quote { position: absolute; bottom: 80px; right: 30px; background: var(--ink); color: var(--ivory); padding: 1.5rem 2rem; max-width: 240px; z-index: 2; }
+    .hero-quote { position: relative; bottom: auto; right: auto; background: var(--ink); color: var(--ivory); padding: 1.5rem 2rem; max-width: 340px; z-index: 2; margin-top: 1.5rem; }
     .hero-quote p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; line-height: 1.5; }
     .hero-quote span { display: block; margin-top: 0.6rem; font-size: 0.7rem; letter-spacing: 0.12em; color: var(--gold-light); text-transform: uppercase; }
 
@@ -422,22 +422,26 @@
       <span class="section-tag">Biography</span>
       <div class="section-rule"></div>
       <h2 class="section-title">A Story Forged in Adversity</h2>
-      <p class="about-text">Dr. Masachs Boungou (pronounced <em>Ma'Zash Boon'Goo</em>) is from the Republic of the Congo, now living in the United States. Born to a mother who never finished high school but championed the inspirational power of education, he survived a civil war in 1999 and taught himself English as an adult by listening to Voice of America broadcasts.</p>
-      <p class="about-text">As a Fulbright Scholar, he earned a dual master's degree in Sustainable International Development and Coexistence & Conflict Studies from Brandeis University's Heller School. He later earned his Ph.D. in Global Studies from the University of Massachusetts, Lowell in 2022, where he proudly served as commencement speaker for the Class of 2022.</p>
-      <p class="about-text">He currently serves as a Lecturer of Africa in International Politics at Boston University's Frederick S. Pardee School of Global Studies. His research focuses on the intersection of conflict experiences, entrepreneurialism, and youth economic empowerment in Africa.</p>
+      <p class="about-text">Dr. Masachs Boungou (pronounced <em>Ma'Zash Boon'Goo</em>) was born to a mother who never finished high school but championed the inspirational power of education. Raised in the Republic of the Congo, he lived through the 1999 civil war at the age of 12, a time when the future and opportunity felt completely out of reach. He taught himself English as an adult by listening to Voice of America broadcasts, and quickly learned that opportunities are not accidents — they are the result of choices made in institutions, organizations, and classrooms.</p>
+      <p class="about-text">As a Fulbright Scholar, he earned a dual master's degree in Sustainable International Development and Coexistence &amp; Conflict Studies from Brandeis University's Heller School. He later earned his Ph.D. in Global Studies from the University of Massachusetts, Lowell in 2022, where he proudly served as commencement speaker for the Class of 2022.</p>
+      <p class="about-text">He has taught at Boston University's Frederick S. Pardee School of Global Studies and at Emerson College as Affiliate Lecturer in Business Fundamentals for Creative Enterprises. His research focuses on the human side of entrepreneurship, including adversity as a catalyst for entrepreneurial creativity and leadership.</p>
+      <p class="about-text">He is currently the Founder and Executive Director of <strong>Shared Prosperity: Local America, Global Opportunity</strong> — a civic media venture that reveals how small-city leaders shape economic opportunity — through education and investment —, and community resilience — through civic infrastructure and engaged residents.</p>
     </div>
     <div class="about-right reveal">
       <div class="about-stats">
         <div class="stat-block"><div class="stat-num">4</div><div class="stat-label">Published Books</div></div>
         <div class="stat-block"><div class="stat-num">Ph.D</div><div class="stat-label">Global Studies</div></div>
         <div class="stat-block"><div class="stat-num">2022</div><div class="stat-label">Commencement Speaker</div></div>
-        <div class="stat-block"><div class="stat-num">BU</div><div class="stat-label">Pardee School Lecturer</div></div>
+        <div class="stat-block"><div class="stat-num">2026</div><div class="stat-label">Founder & Exec. Director</div></div>
       </div>
       <div class="awards">
-        <div class="award-item"><span class="award-year">2018</span><span class="award-text">New Leaders Group Award — Institute of International Education (IIE)</span></div>
+        <div class="award-item"><span class="award-year">2026</span><span class="award-text">Founder &amp; Executive Director, Shared Prosperity: Local America, Global Opportunity — Pittsfield, MA</span></div>
+        <div class="award-item"><span class="award-year">2022</span><span class="award-text">Ph.D. Commencement Speaker — University of Massachusetts Lowell, Class of 2022</span></div>
         <div class="award-item"><span class="award-year">2020</span><span class="award-text">Social Change Grant — The Pollination Project</span></div>
+        <div class="award-item"><span class="award-year">2018</span><span class="award-text">New Leaders Group Award — Institute of International Education (IIE)</span></div>
         <div class="award-item"><span class="award-year">2016</span><span class="award-text">Fulbright Scholar — Brandeis University Heller School</span></div>
-        <div class="award-item"><span class="award-year">2016</span><span class="award-text">Founder, Nunga Program — Youth Entrepreneurship & Peacebuilding, Congo</span></div>
+        <div class="award-item"><span class="award-year">2016</span><span class="award-text">Founder, Nunga Program — Youth Entrepreneurship &amp; Peacebuilding, Congo</span></div>
+        <div class="award-item"><span class="award-year">2014</span><span class="award-text">Founder &amp; First President-Elect, Brandeis University Fulbright Chapter</span></div>
       </div>
     </div>
   </section>
