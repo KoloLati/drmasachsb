@@ -290,6 +290,54 @@
     @media (max-width: 1024px) { .academic-grid { grid-template-columns: 1fr; } .academic-section { padding: 5rem 3rem; } }
     @media (max-width: 640px) { .academic-section { padding: 4rem 1.5rem; } }
 
+    /* ── SHARED PROSPERITY QUOTE ── */
+    .sp-quote-block {
+      margin: 2rem 0 0 0;
+      background: var(--ink);
+      padding: 2.5rem 2.5rem 2rem;
+      border-left: 4px solid var(--gold);
+      position: relative;
+    }
+    .sp-quote-block::before {
+      content: '\201C';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      color: var(--gold);
+      opacity: 0.3;
+      position: absolute;
+      top: -1rem;
+      left: 1.5rem;
+      line-height: 1;
+    }
+    .sp-quote-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--ivory);
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+    .sp-quote-author {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .sp-quote-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--gold); color: var(--ink);
+      padding: 0.6rem 1.4rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      text-decoration: none; transition: all 0.3s;
+    }
+    .sp-quote-link:hover { background: var(--gold-light); }
+    .sp-quote-link svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; transition: transform 0.3s; }
+    .sp-quote-link:hover svg { transform: translateX(4px); }
+
     /* REVEAL */
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: none; }
@@ -466,6 +514,14 @@
       <p class="about-text">As a Fulbright Scholar, he earned a dual master's degree in Sustainable International Development and Coexistence &amp; Conflict Studies from Brandeis University's Heller School. He later earned his Ph.D. in Global Studies from the University of Massachusetts, Lowell in 2022, where he proudly served as commencement speaker for the Class of 2022.</p>
       <p class="about-text">He has taught at Boston University's Frederick S. Pardee School of Global Studies and at Emerson College as Affiliate Lecturer in Business Fundamentals for Creative Enterprises. His research focuses on the human side of entrepreneurship, including adversity as a catalyst for entrepreneurial creativity and leadership.</p>
       <p class="about-text">He is currently the Founder and Executive Director of <strong>Shared Prosperity: Local America, Global Opportunity</strong> — a civic media venture that reveals how small-city leaders shape economic opportunity — through education and investment —, and community resilience — through civic infrastructure and engaged residents.</p>
+      <div class="sp-quote-block reveal">
+        <p class="sp-quote-text">"The future of America is not in Washington or Wall Street — it is in small cities. Every day, local leaders make decisions that shape whether your community thrives or falls behind. But nobody is telling that story. We are. Shared Prosperity reveals how small-city decisions create opportunity for everyone. That is how local prosperity becomes global opportunity."</p>
+        <p class="sp-quote-author">— Dr. Masachs Boungou, Founder, Shared Prosperity</p>
+        <a class="sp-quote-link" href="https://www.sharedprosperityventure.com" target="_blank">
+          Visit Shared Prosperity
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
     </div>
     <div class="about-right reveal">
       <div class="about-stats">
